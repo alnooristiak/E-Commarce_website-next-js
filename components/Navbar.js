@@ -2,15 +2,16 @@ import Link from 'next/link';
 import React, { useRef, useState } from 'react';
 import { BsFillCartPlusFill } from 'react-icons/bs';
 
-const Navbar = () => {
+const Navbar = ({ cart, addToCart, removeToCart, clearCart, subTotal }) => {
+    // console.log(cart, addToCart, removeToCart, clearCart, subTotal);
 
-    const [count, setCount] = useState(1);
-    const incrementCount = () => {
-        setCount(count + 1);
-      };
-    const decrementCount = () => {
-        setCount(count - 1);
-    }
+    // const [count, setCount] = useState(1);
+    // const incrementCount = () => {
+    //     setCount(count + 1);
+    //   };
+    // const decrementCount = () => {
+    //     setCount(count - 1);
+    // }
 
     const toggleCart = () => {
         if (ref.current.classList.contains('translate-x-full')) {
@@ -68,26 +69,33 @@ const Navbar = () => {
                             onClick={toggleCart}
                             className='absolute cursor-pointer top-0 right-2 text-2xl'>X</span>
                         <ol className='list-decimal font-semibold'>
-                            <li>
-                                <div className='item my-5 flex'>
-                                    <div className="w-2/3  font-semibold">
-                                        t-shirt bname
+                            {Object.keys(cart).length ==0 && <div className='my-2'>cart is empty</div>}
+                            {
+                                Object.keys(cart).map((k) => { return <li key={k}>
+                                    <div className='item my-5 flex'>
+                                        <div className="w-2/3  font-semibold">
+                                            {cart[k].name}
+                                        </div>
+                                        <div 
+                                        className='flex 
+                                        font-semibold 
+                                        justify-center 
+                                        items-center 
+                                        w-1/3'>
+                                            {/* <span onClick={decrementCount} className='text-2xl cursor-pointer'>-</span> */}
+                                            <span className='cursor-pointer' onClick={()=> {removeToCart(k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].variant)}}>-</span>
+                                            <span className='text-2xl'>{cart[k].qty}</span>
+                                            <span className='cursor-pointer' onClick={()=> {addToCart(k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].variant)}}>
+                                                +
+                                            </span>
+                                            {/* <span onClick={incrementCount} className='text-2xl cursor-pointer'>+</span> */}
+                                        </div>
                                     </div>
-                                    <div 
-                                    className='flex 
-                                    font-semibold 
-                                    justify-center 
-                                    items-center 
-                                    w-1/3'>
-                                        <span onClick={decrementCount} className='text-2xl cursor-pointer'>-</span>
-                                        <span className='text-2xl'>{count}</span>
-                                        <span onClick={incrementCount} className='text-2xl cursor-pointer'>+</span>
-                                    </div>
-                                </div>
-                            </li>
+                                </li> })
+                            }
                         </ol>
                         <button class="flex text-center text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Check Out</button>
-                        <button class="flex my-2 text-center text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Clear Cart</button>
+                        <button onClick={clearCart} class="flex my-2 text-center text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Clear Cart</button>
                     </div>
                 </div>
             </header>

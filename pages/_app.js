@@ -4,9 +4,11 @@ import '@/styles/globals.css'
 import { useEffect, useState } from 'react'
 
 export default function App({ Component, pageProps }) {
+
   const [cart, setCart] = useState({});
   const [subTotal, setSubTotal] = useState(0);
 
+  // when relode then work this 
   useEffect(() => {
     try {
       if (localStorage.getItem("cart")) {
@@ -18,8 +20,9 @@ export default function App({ Component, pageProps }) {
     }
   }, [])
 
+  // save cart hendeler
   const saveCart = (myCart) => {
-    localStorage.setItem("cart",JSON.stringify(myCart))
+    localStorage.setItem("cart", JSON.stringify(myCart))
     let subt = 0;
     let keys = Object.keys(cart);
     for (let i = 0; i < keys.length; i++) {
@@ -28,17 +31,19 @@ export default function App({ Component, pageProps }) {
     setSubTotal(subt)
   }
 
-  const addToCart = (itemCode, qty, name, price, size, variant) => {
+  // add to cart hendeler
+  const addToCart = (itemCode, qty, price, name, size, variant) => {
     let newCart = cart;
     if (itemCode in cart) {
       newCart[itemCode].qty = cart[itemCode].qty + qty
     } else {
-      newCart[itemCode] = { qty: 1, name, price, size, variant }
+      newCart[itemCode] = { qty: 1, price, name, size, variant }
     }
     setCart(newCart)
     saveCart(newCart)
   }
-  // remove hendeler
+
+  // remove cart hendeler
   const removeToCart = (itemCode, qty, name, price, size, variant) => {
     let newCart = JSON.parse(JSON.stringify(cart));
     if (itemCode in cart) {
@@ -53,6 +58,7 @@ export default function App({ Component, pageProps }) {
     setCart({})
     saveCart({})
   }
+
   return <>
     <Navbar cart={cart} addToCart={addToCart} removeToCart={removeToCart} clearCart={clearCart} subTotal={subTotal} />
     <Component cart={cart} addToCart={addToCart} removeToCart={removeToCart} clearCart={clearCart} subTotal={subTotal} {...pageProps} />

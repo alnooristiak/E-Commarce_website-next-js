@@ -27,12 +27,12 @@ const Navbar = ({ cart, addToCart, removeToCart, clearCart, subTotal }) => {
     const ref = useRef();
 
     return (
-        <div>
-            <header className="text-gray-600 bg-slate-50 body-font">
+        <div className='bg-slate-50 sticky top-0 z-10'>
+            <header className="text-gray-600 bg-slate-50 body-font drop-shadow-md">
                 <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
                     <Link href={"/"}>
                         <span className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeLinecap="round" stroke-linejoin="round" stroke-width="2" className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
                                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
                             </svg>
                             <span className="ml-3 text-xl">Tailblocks</span>
@@ -58,12 +58,12 @@ const Navbar = ({ cart, addToCart, removeToCart, clearCart, subTotal }) => {
                         </span>
                     </div>
                     {/* <button className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Button
-                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                        <svg fill="none" stroke="currentColor" strokeLinecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-1" viewBox="0 0 24 24">
                             <path d="M5 12h14M12 5l7 7-7 7"></path>
                         </svg>
                     </button> */}
 
-                    <div ref={ref} className="w-72 sitebar absolute top-0 right-0 bg-pink-500 p-10 transition-transform translate-x-full transform h-full">
+                    <div ref={ref} className="w-72 z-10 h-[100vh] sitebar absolute top-0 right-0 bg-pink-500 p-10 transition-transform translate-x-full transform">
                         <h3 className='text-center'>shoping cart</h3>
                         <span
                             onClick={toggleCart}
@@ -85,17 +85,17 @@ const Navbar = ({ cart, addToCart, removeToCart, clearCart, subTotal }) => {
                                             {/* <span onClick={decrementCount} className='text-2xl cursor-pointer'>-</span> */}
                                             <span className='cursor-pointer' onClick={()=> {removeToCart(k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].variant)}}>-</span>
                                             <span className='text-2xl'>{cart[k].qty}</span>
-                                            <span className='cursor-pointer' onClick={()=> {addToCart(k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].variant)}}>
-                                                +
-                                            </span>
+                                            <span className='cursor-pointer' onClick={()=> {addToCart(k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].variant)}}>+</span>
                                             {/* <span onClick={incrementCount} className='text-2xl cursor-pointer'>+</span> */}
                                         </div>
                                     </div>
                                 </li> })
                             }
                         </ol>
-                        <button class="flex text-center text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Check Out</button>
-                        <button onClick={clearCart} class="flex my-2 text-center text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Clear Cart</button>
+                        <Link href={"/checkout"}>
+                            <button className="flex text-center text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Check Out</button>
+                        </Link>
+                        <button onClick={clearCart} className="flex my-2 text-center text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Clear Cart</button>
                     </div>
                 </div>
             </header>

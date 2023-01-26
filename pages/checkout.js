@@ -88,7 +88,9 @@ const Checkout = ({ cart, addToCart, removeToCart, clearCart, subTotal }) => {
                                         w-1/3'>
                                             {/* <span onClick={decrementCount} className='text-2xl cursor-pointer'>-</span> */}
                                             {/* <span className='cursor-pointer' onClick={() => { removeToCart(k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].variant) }}>-</span> */}
+                                            <span className='cursor-pointer' onClick={() => { removeToCart(k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].variant) }}>-</span>
                                             <span className='text-2xl'>{cart[k].qty}</span>
+                                            <span className='cursor-pointer' onClick={() => { addToCart(k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].variant) }}>+</span>
                                             {/* <span className='cursor-pointer' onClick={() => { addToCart(k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].variant) }}>+</span> */}
                                         </div>
                                     </div>
@@ -101,8 +103,12 @@ const Checkout = ({ cart, addToCart, removeToCart, clearCart, subTotal }) => {
                         <span>Sub Total:  {subTotal}</span>
                     </p>
                 </div>
+                {/* make pament btn */}
+                <div>
+                    <button className="flex my-2 text-center text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">make pament</button>
             </div>
         </div>
+        </div >
     );
 };
 

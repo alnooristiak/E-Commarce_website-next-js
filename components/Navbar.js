@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React, { useRef, useState } from 'react';
 import { BsFillCartPlusFill } from 'react-icons/bs';
-
+import { FaUser } from "react-icons/fa";
 const Navbar = ({ cart, addToCart, removeToCart, clearCart, subTotal }) => {
     // console.log(cart, addToCart, removeToCart, clearCart, subTotal);
 
@@ -52,9 +52,14 @@ const Navbar = ({ cart, addToCart, removeToCart, clearCart, subTotal }) => {
                             <span className="mr-5 hover:text-gray-900">Stikers</span>
                         </Link>
                     </nav>
-                    <div>
-                        <span onClick={toggleCart} className="cursor-pointer inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
-                            <BsFillCartPlusFill className='md:text-3xl' />
+                    <div className='d-flex'>
+                        <Link href={"/login"}>
+                            <span className="cursor-pointer inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0 mr-2">
+                                <FaUser  className='md:text-2xl' />
+                            </span>
+                        </Link>
+                        <span onClick={toggleCart} className="cursor-pointer inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0 mr-2">
+                            <BsFillCartPlusFill className='md:text-2xl' />
                         </span>
                     </div>
                     {/* <button className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Button
@@ -63,7 +68,7 @@ const Navbar = ({ cart, addToCart, removeToCart, clearCart, subTotal }) => {
                         </svg>
                     </button> */}
 
-                    <div ref={ref} className="w-72 z-10 h-[100vh] sitebar absolute top-0 right-0 bg-pink-500 p-10 transition-transform translate-x-full transform">
+                    <div ref={ref} className={`w-72 h-[100vh] sitebar absolute top-0 right-0 bg-pink-500 ${Object.keys(cart).length !==0 ? 'translate-x-0':'translate-x-full'} p-10 transition-transform transform`}>
                         <h3 className='text-center'>shoping cart</h3>
                         <span
                             onClick={toggleCart}

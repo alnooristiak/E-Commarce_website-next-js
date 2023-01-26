@@ -107,7 +107,9 @@ const Login = () => {
                                         <lable class="form-check-label inline-block text-gray-800" for="exampleCheck2"
                                         >Remember me</lable>
                                     </div>
-                                    <a href="#!" class="text-gray-800">Forgot password?</a>
+                                    <Link className='underline' href={"/forgotepassword"}>
+                                        <span class=" text-indigo-500">Forgot password?</span>
+                                    </Link>
                                 </div>
 
                                 <div class="text-center lg:text-left">
